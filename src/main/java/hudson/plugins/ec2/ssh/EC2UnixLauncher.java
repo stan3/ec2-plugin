@@ -144,6 +144,8 @@ public class EC2UnixLauncher extends EC2ComputerLauncher {
             }
             conn = cleanupConn;
 
+            conn.requestRemotePortForwarding("localhost", 9000, "localhost", 9000);
+
             SCPClient scp = conn.createSCPClient();
             String initScript = computer.getNode().initScript;
             String tmpDir = (Util.fixEmptyAndTrim(computer.getNode().tmpDir) != null ? computer.getNode().tmpDir
